@@ -1,7 +1,7 @@
 seo.go
 ======
 
-seo is a command line tool for analysing readability and SEO score of an HTML document.
+seo is a command line tool to assess readability and SEO score for any HTML document.
 
 # Usage
 
