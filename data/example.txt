@@ -1,0 +1,88 @@
+<p>We’re two weeks in 2017 already, but looking back at <a href="/2014-year-in-review/">my year in review for 2014</a> made me realise how valuable such posts are, at least for myself.</p>
+
+<p>I skipped writing such a review for 2015, but here’s some of the things that 2016 had in store for me.</p>
+
+<h3 id="visited-the-usa">Visited the USA</h3>
+
+<p>In May, I visited New York for a short week. After enjoying every minute of my stay and meeting up with <a href="https://twitter.com/ChrisVanPatten">Chris</a> &amp; <a href="https://twitter.com/vovafeldman">Vova</a>, it is safe to say that I love New York. I particulary enjoyed <a href="http://www.islandburgersandshakes.com">Island Burgers &amp; Shakes</a>, so much that I ate there two nights in a row and even ordered the same “Napalm” burger twice.</p>
+
+<p>I was passing through New York on my way to <a href="http://www.microconf.com/">Microconf</a>, a conference for bootstrapped software companies which was held in Las Vegas later that week.</p>
+
+<p>At Microconf it was great meeting so many like-minded founders, most of them optimising their lifestyle first and foremost instead of just going after more profit.</p>
+
+<h3 id="relaunched-boxzilla">(Re)launched Boxzilla</h3>
+
+<p>Our Scroll Triggered Boxes plugin for WordPress was having trouble sustaining itself through its paid plan.</p>
+
+<p>Microconf convinced me of the need for a recurring business model so we rebranded the plugin to <a href="https://boxzillaplugin.com/">Boxzilla</a> and at the same time introduced monthly &amp; yearly subscriptions.</p>
+
+<p>You can read more about <a href="https://ibericode.com/2016/boxzilla-behind-the-scenes/">the process of relaunching Boxzilla</a> on the ibericode blog.</p>
+
+<p><img src="/media/2016-01-boxzilla-stats.jpg" alt="Weekly subscription statistics for Boxzilla" /></p>
+
+<p>At just 7 months in, we are clearly seeing the benefits of a monthly subscription model. Boxzilla is now growing steadily and I am fairly certain that we will be breaking even in the next few months.</p>
+
+<h3 id="million-downloads-for-mailchimp-for-wordpress">5 million downloads for MailChimp for WordPress</h3>
+
+<p>Because of a revamped MailChimp API, <a href="https://mc4wp.com/blog/update-mailchimp-wordpress-4-0/">we pretty much rewrote the API client in MailChimp for WordPress</a> from the ground up. We then worked hard to ensure that people would be on this new version of the plugin before the end of 2016, as MailChimp is slowly shutting down their older API endpoints.</p>
+
+<p>This among other things helped us break a grand total of <strong>5 million+ plugin downloads</strong> spread out over <strong>700.000+ active websites</strong>.</p>
+
+<p>I’m pretty proud of my team that the three of us can pull this off together.</p>
+
+<h3 id="bought-a-house">Bought a house</h3>
+
+<p>See that floating house in the middle?</p>
+
+<p><img src="/media/2016-01-house.jpg" alt="The house" /></p>
+
+<p>That’s the house (built in 1908) I bought last year and will move into next week.</p>
+
+<p>Deciding on a house to purchase was super exciting, even more so since I spent the last 3 winters abroad or never stayed in The Netherlands for more than 6 months straight the last few years.</p>
+
+<p>That said, the urge to travel for prolonged periods is decreasing while the urge to build meaningful relations and work on stuff that matters is ever increasing. I am looking forward to make this house my home.</p>
+
+<h3 id="got-a-cat">Got a cat</h3>
+
+<p>For my girlfriend’s birthday we visited the animal shelter and brought home a cat. Meet Meo.</p>
+
+<p><img src="/media/2016-01-meo.jpg" alt="Meo" /></p>
+
+<p>Meo was found roaming the streets and has aids (FIV) but is luckily not having any issues yet. He loves to snuggle and practically lives on my desk, keeping me company while I work.</p>
+
+<h3 id="learned-golang">Learned Golang</h3>
+
+<p>After learning Python in 2015, I figured I should learn a statically typed programming language next. I dove into Golang and started the following two (open-sourced) projects:</p>
+
+<ul>
+ <li><a href="https://github.com/dannyvankooten/browserpass">Browserpass</a>, a Firefox &amp; Chrome extension for <a href="https://www.passwordstore.org/">passwordstore.org</a>.</li>
+ <li><a href="https://github.com/dannyvankooten/ana">Ana</a>, open-source web analytics.</li>
+</ul>
+
+<h3 id="switched-back-to-linux">Switched back to Linux</h3>
+
+<p>Seeing the new MacBook with touch bar did not excite me all that much so with the house bought &amp; less travel ahead, I figured I could put my desktop PC to more use.</p>
+
+<p><img src="/media/2016-01-desktop.jpg" alt="My Ubuntu Gnome desktop while I type this" /></p>
+
+<p>32GB of RAM and a new SSD later I was firing up Ubuntu Gnome.</p>
+
+<p>A few months in I can safely say that I am easily just as productive as I was on OSX &amp; stoked to be back on open-source software!</p>
+
+<h3 id="visited-south-africa">Visited South Africa</h3>
+
+<p>In December, I joined my 69 year old mother on her first flight ever to visit my oldest sister, who’s living in South Africa. During a visit to the Kruger Park we saw a group of lions ripping apart a giraffe.</p>
+
+<p><img src="/media/2016-01-south-africa.jpg" alt="Leader of the lion pack, relaxing after his meal" /></p>
+
+<h3 id="lost-10-kilo">Lost 10 kilo</h3>
+
+<p>Looking back, I was slowly getting fat. After rigorous calorie counting to see where I was going wrong, I made some lasting adjustments to my diet. This resulted in me losing 10 kg over the next 8 months.</p>
+
+<p>Additionally, I picked up running and hope to be running a full marathon in 2017.</p>
+
+<h3 id="tldr">TL;DR</h3>
+
+<p>Started 2016 in Thailand, New York &amp; Vegas living “wild and free” (just kidding mom).</p>
+
+<p>Ended 2016 with a house of my own and a cat…</p>

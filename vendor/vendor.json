@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "2wcgnEdGnKLkBnzkBEC9RmiqP4w=",
+			"path": "github.com/PuerkitoBio/goquery",
+			"revision": "3cb3b8656883c2cc3deb9c643d93ea6e5157e425",
+			"revisionTime": "2016-12-30T03:41:54Z"
+		}
+	],
+	"rootPath": "github.com/dannyvankooten/seo"
+}
