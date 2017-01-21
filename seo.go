@@ -62,6 +62,15 @@ func main() {
 		good = append(good, "The amount of words following each subheading doesn't exceed 300 words")
 	}
 
+	sentences := countSentences(body.Text())
+	longSentences := countLongSentences()
+	percentage := float32(longSentences) / float32(sentences) * 100
+	if percentage > 25 {
+		bad = append(bad, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
+	} else {
+		good = append(good, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
+	}
+
 	fmt.Printf("Analysing \u001B[4m%s\u001B[24m\n", loc)
 	for _, l := range good {
 		fmt.Printf("\u001B[32m+\u001B[39m %s\n", l)
@@ -81,6 +90,20 @@ func countHeadingFollowedByWords(l int) int {
 			count++
 		}
 	})
+
+	return count
+}
+
+// max 25% of lsentences should contain 20+ words
+func countLongSentences() int {
+	sentences := getSentences(body.Text())
+	count := 0
+
+	for _, s := range sentences {
+		if countWords(s) > 20 {
+			count++
+		}
+	}
 
 	return count
 }
