@@ -14,6 +14,11 @@ var body *goquery.Selection
 func main() {
 	var doc *goquery.Document
 
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: seo [location] [selector]")
+		os.Exit(0)
+	}
+
 	loc := os.Args[1]
 	if strings.HasPrefix(loc, "http") {
 		doc, _ = goquery.NewDocument(loc)
@@ -34,12 +39,10 @@ func main() {
 
 	c = countHeadings()
 	if c == 0 {
-		bad = append(bad, "The text does not contain any subheadings. Add at least one subheading.")
-	} else {
-		good = append(good, fmt.Sprintf("The text contains %d subheadings.", c))
+		bad = append(bad, "The text does not contain any subheadings.")
 	}
 
-	if countWords(body) <= 300 {
+	if countWords(body.Text()) <= 300 {
 		bad = append(bad, "You have far too little content, please add some content to enable a good analysis.")
 	} else {
 		good = append(good, "The text contains more than 300 words.")
@@ -54,9 +57,9 @@ func main() {
 
 	c = countHeadingFollowedByWords(300)
 	if c > 1 {
-		bad = append(bad, fmt.Sprintf("%d of the subheadings is followed by more than the recommended maximum of 300 words.", c))
+		bad = append(bad, fmt.Sprintf("%d of the subheadings is followed by more than 300 words.", c))
 	} else {
-		good = append(good, "No subheadings are followed by more than 300 words.")
+		good = append(good, "The amount of words following each subheading doesn't exceed 300 words")
 	}
 
 	fmt.Printf("Analysing \u001B[4m%s\u001B[24m\n", loc)
@@ -73,7 +76,7 @@ func countHeadingFollowedByWords(l int) int {
 	count := 0
 	body.Find("h2, h3, h4, h5").Each(func(i int, s *goquery.Selection) {
 		sub := s.NextUntil("h2, h3, h4, h5")
-		wordCount := countWords(sub)
+		wordCount := countWords(sub.Text())
 		if wordCount > l {
 			count++
 		}
@@ -87,17 +90,12 @@ func countHeadings() int {
 	return body.Find("h2, h3, h4, h5").Length()
 }
 
-// count words, > 300
-func countWords(s *goquery.Selection) int {
-	return len(strings.Split(s.Text(), " "))
-}
-
 // check paragraph length
 func countParagraphsWithWords(l int) int {
 	count := 0
 
 	body.Find("p").Each(func(i int, s *goquery.Selection) {
-		wordCount := countWords(s)
+		wordCount := countWords(s.Text())
 		if wordCount > l {
 			count++
 		}
