@@ -1,8 +1,17 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
+
+func TestGetWords(t *testing.T) {
+	s := "Hello world"
+	words := getWords(s)
+	if len(words) != 2 || words[0] != "Hello" || words[1] != "world" {
+		t.Errorf("Invalid result %s", words)
+	}
+}
 
 func TestCountWords(t *testing.T) {
 	s := "Hello these are some words. Count them for me, will you?"
@@ -37,5 +46,21 @@ func TestCountSyllables(t *testing.T) {
 	count = countSyllables(s)
 	if count != 1 {
 		t.Errorf("Expected %d, got %d", 1, count)
+	}
+}
+
+func TestIsVowel(t *testing.T) {
+	vowels := []string{"a", "o", "i", "u", "e"}
+	for _, c := range vowels {
+		if !isVowel(c) {
+			t.Errorf("%s should return true", c)
+		}
+	}
+
+	nonVowels := strings.Split("zxcvbnmqwrtypsdfghjkl", "")
+	for _, c := range nonVowels {
+		if isVowel(c) {
+			t.Errorf("%s should return false", c)
+		}
 	}
 }
