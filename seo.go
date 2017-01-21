@@ -59,22 +59,14 @@ func main() {
 		good = append(good, "No subheadings are followed by more than 300 words.")
 	}
 
-	fmt.Printf("Analysing %s\n", loc)
-	fmt.Printf("\n# The good\n")
+	fmt.Printf("Analysing \u001B[4m%s\u001B[24m\n", loc)
 	for _, l := range good {
-		fmt.Printf("- %s\n", l)
+		fmt.Printf("\u001B[32m+\u001B[39m %s\n", l)
 	}
-	if len(good) == 0 {
-		fmt.Print("...\n")
+	for _, l := range bad {
+		fmt.Printf("\u001B[31m+\u001B[39m %s\n", l)
 	}
 
-	fmt.Printf("\n# The bad\n")
-	for _, l := range bad {
-		fmt.Printf("- %s\n", l)
-	}
-	if len(bad) == 0 {
-		fmt.Print("...\n")
-	}
 }
 
 func countHeadingFollowedByWords(l int) int {
