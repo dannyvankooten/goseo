@@ -75,7 +75,6 @@ func main() {
 	if len(bad) == 0 {
 		fmt.Print("...\n")
 	}
-
 }
 
 func countHeadingFollowedByWords(l int) int {
