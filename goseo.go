@@ -52,7 +52,7 @@ func main() {
 	if c >= 1 {
 		bad = append(bad, fmt.Sprintf("%d of the paragraphs contains more than the recommended maximum of 150 words.", c))
 	} else {
-		good = append(good, "None of the paragraphs contain too many words.")
+		good = append(good, "None of the paragraphs contain more than 150 words.")
 	}
 
 	c = countHeadingFollowedByWords(300)
