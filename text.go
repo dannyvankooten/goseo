@@ -54,9 +54,33 @@ func countSyllables(t string) int {
 
 // each group of continuous non-blank characters with beginning and ending punctuation removed counts as a word
 func getWords(t string) []string {
-	return strings.Split(t, " ")
+	var words []string
+	for _, w := range strings.Split(t, " ") {
+		w = strings.Trim(w, ",.;!'?:()& “”\n")
+		if len(w) > 1 {
+			words = append(words, w)
+		}
+
+	}
+	return words
 }
 
 func countWords(t string) int {
 	return len(getWords(t))
+}
+
+func calculateKincaid(t string) float32 {
+	// RE = 206.835 – (1.015 x ASL) – (84.6 x ASW)
+	sentenceCount := countSentences(t)
+	words := getWords(t)
+	wordCount := len(words)
+	syllableCount := 0
+	for _, w := range words {
+		syllableCount += countSyllables(w)
+	}
+
+	asl := float32(wordCount) / float32(sentenceCount)
+	asw := float32(syllableCount) / float32(wordCount)
+
+	return 206.835 - (1.015 * asl) - (84.6 * asw)
 }

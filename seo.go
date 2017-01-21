@@ -62,6 +62,7 @@ func main() {
 		good = append(good, "The amount of words following each subheading doesn't exceed 300 words")
 	}
 
+	// long sentences
 	sentences := countSentences(body.Text())
 	longSentences := countLongSentences()
 	percentage := float32(longSentences) / float32(sentences) * 100
@@ -69,6 +70,14 @@ func main() {
 		bad = append(bad, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
 	} else {
 		good = append(good, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
+	}
+
+	// kincaid
+	kc := calculateKincaid(body.Text())
+	if kc < 60 {
+		bad = append(bad, fmt.Sprintf("The copy scores %1.f in the Flesch Reading Ease test.", kc))
+	} else {
+		good = append(good, fmt.Sprintf("The copy scores %1.f in the Flesch Reading Ease test.", kc))
 	}
 
 	fmt.Printf("Analysing \u001B[4m%s\u001B[24m\n", loc)
