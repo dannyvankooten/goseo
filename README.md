@@ -19,9 +19,9 @@ goseo https://dannyvankooten.com/2016-year-in-review/ .post-content
 
 To build goseo from source, take the following steps.
 
-1. Clone the repository: `git clone git@github.com:dannyvankooten/goseo`
-2. Ensure [Golang](https://golang.org/doc/install) is installed & configured properly.
-3. Run `go install` from the repository's root directory.
+1. Ensure [Golang](https://golang.org/doc/install) is installed & configured properly.
+2. Clone the repository: `git clone git@github.com:dannyvankooten/goseo`
+3. Run `make` from the repository's root directory.
 
 Pre-built binaries for OSX, Linux and Windows will be available soon.
 
