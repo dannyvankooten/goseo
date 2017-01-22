@@ -38,7 +38,7 @@ func main() {
 	var bad []string
 	var c int
 
-	c = countHeadings()
+	c = countHeadings(body)
 	if c == 0 {
 		bad = append(bad, "The text does not contain any subheadings.")
 	}
@@ -49,14 +49,14 @@ func main() {
 		good = append(good, "The text contains more than 300 words.")
 	}
 
-	c = countParagraphsWithWords(150)
+	c = countParagraphsWithWords(body, 150)
 	if c >= 1 {
 		bad = append(bad, fmt.Sprintf("%d of the paragraphs contains more than the recommended maximum of 150 words.", c))
 	} else {
 		good = append(good, "None of the paragraphs contain more than 150 words.")
 	}
 
-	c = countHeadingFollowedByWords(300)
+	c = countHeadingsWithWords(body, 300)
 	if c > 1 {
 		bad = append(bad, fmt.Sprintf("%d of the subheadings is followed by more than 300 words.", c))
 	} else {
@@ -65,7 +65,7 @@ func main() {
 
 	// long sentences
 	sentences := countSentences(body.Text())
-	longSentences := countLongSentences()
+	longSentences := countSentencesWithWords(body, 20)
 	percentage := float32(longSentences) / float32(sentences) * 100
 	if percentage > 25 {
 		bad = append(bad, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
@@ -90,57 +90,3 @@ func main() {
 	}
 
 }
-
-func countHeadingFollowedByWords(l int) int {
-	count := 0
-	body.Find("h2, h3, h4, h5").Each(func(i int, s *goquery.Selection) {
-		sub := s.NextUntil("h2, h3, h4, h5")
-		wordCount := countWords(sub.Text())
-		if wordCount > l {
-			count++
-		}
-	})
-
-	return count
-}
-
-// max 25% of lsentences should contain 20+ words
-func countLongSentences() int {
-	sentences := getSentences(body.Text())
-	count := 0
-
-	for _, s := range sentences {
-		if countWords(s) > 20 {
-			count++
-		}
-	}
-
-	return count
-}
-
-// count subheadings, > 1
-func countHeadings() int {
-	return body.Find("h2, h3, h4, h5").Length()
-}
-
-// check paragraph length
-func countParagraphsWithWords(l int) int {
-	count := 0
-
-	body.Find("p").Each(func(i int, s *goquery.Selection) {
-		wordCount := countWords(s.Text())
-		if wordCount > l {
-			count++
-		}
-	})
-
-	return count
-}
-
-//  maximum 25% of sentences with over 20 words
-
-// passive voice
-
-// transition words
-
-// flesch reading ease test
