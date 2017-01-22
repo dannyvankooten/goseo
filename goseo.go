@@ -22,7 +22,7 @@ func main() {
 	var doc *goquery.Document
 
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: seo [location] [selector]")
+		fmt.Println("Usage: goseo [location] [selector]")
 		os.Exit(0)
 	}
 
