@@ -3,10 +3,11 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"os"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 var body *goquery.Selection
