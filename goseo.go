@@ -41,6 +41,8 @@ func main() {
 	}
 
 	var c int
+	var p float32
+	sentenceCount := countSentences(body.Text())
 
 	c = countWords(body.Text())
 	addResult(fmt.Sprintf("The text contains %d words.", c), c >= 300)
@@ -54,11 +56,14 @@ func main() {
 	c = countParagraphsWithWords(body, 150)
 	addResult(fmt.Sprintf("%d of the paragraphs contains more than 150 words.", c), c < 1)
 
+	c = countSentencesWithTransitionWord(body.Text())
+	p = float32(c) / float32(sentenceCount) * 100
+	addResult(fmt.Sprintf("%.1f%% of the sentences contain a transition word or phrase.", p), p >= 30)
+
 	// long sentences
-	sentences := countSentences(body.Text())
-	longSentences := countSentencesWithWords(body, 20)
-	percentage := float32(longSentences) / float32(sentences) * 100
-	addResult(fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage), percentage <= 25)
+	c = countSentencesWithWords(body, 20)
+	p = float32(c) / float32(sentenceCount) * 100
+	addResult(fmt.Sprintf("%.1f%% of the sentences contain more than 20 words.", p), p <= 25)
 
 	// kincaid
 	kc := calculateKincaid(body.Text())
@@ -67,9 +72,9 @@ func main() {
 	fmt.Printf("Analysing \u001B[4m%s\u001B[24m\n", loc)
 	for _, r := range results {
 		if r.good {
-			fmt.Printf("\u001B[32m+\u001B[39m %s\n", r.text)
+			fmt.Printf("\u001B[32m+ %s\u001B[39m\n", r.text)
 		} else {
-			fmt.Printf("\u001B[31m-\u001B[39m %s\n", r.text)
+			fmt.Printf("\u001B[31m- %s\u001B[39m\n", r.text)
 		}
 
 	}

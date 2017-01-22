@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"os"
 	"strings"
 )
 
@@ -83,4 +85,35 @@ func calculateKincaid(t string) float32 {
 	asw := float32(syllableCount) / float32(wordCount)
 
 	return 206.835 - (1.015 * asl) - (84.6 * asw)
+}
+
+func getTransitionWordMap() map[string]bool {
+	f, _ := os.Open("data/transition-words.txt")
+	defer f.Close()
+	scanner := bufio.NewScanner(f)
+	scanner.Split(bufio.ScanLines)
+	transitionWords := make(map[string]bool)
+	for scanner.Scan() {
+		transitionWords[scanner.Text()] = true
+	}
+	return transitionWords
+}
+
+func countSentencesWithTransitionWord(t string) int {
+	t = strings.ToLower(t)
+	s := getSentences(t)
+	transitionWords := getTransitionWordMap()
+	count := 0
+
+	for _, s := range s {
+		words := getWords(s)
+		for _, w := range words {
+			if transitionWords[w] {
+				count++
+				break
+			}
+		}
+	}
+
+	return count
 }
