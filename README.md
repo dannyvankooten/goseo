@@ -1,5 +1,7 @@
 goseo
 ======
+[![Go Report Card](https://goreportcard.com/badge/github.com/dannyvankooten/goseo)](https://goreportcard.com/report/github.com/dannyvankooten/goseo)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dannyvankooten/goseo/master/LICENSE)
 
 goseo is a command line tool to assess readability and SEO score for any HTML document or web page.
 
