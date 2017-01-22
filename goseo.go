@@ -11,6 +11,12 @@ import (
 )
 
 var body *goquery.Selection
+var results []result
+
+type result struct {
+	text string
+	good bool
+}
 
 func main() {
 	var doc *goquery.Document
@@ -34,59 +40,41 @@ func main() {
 		body = doc.Find(os.Args[2])
 	}
 
-	var good []string
-	var bad []string
 	var c int
 
+	c = countWords(body.Text())
+	addResult(fmt.Sprintf("The text contains %d words.", c), c >= 300)
+
 	c = countHeadings(body)
-	if c == 0 {
-		bad = append(bad, "The text does not contain any subheadings.")
-	}
-
-	if countWords(body.Text()) <= 300 {
-		bad = append(bad, "You have far too little content, please add some content to enable a good analysis.")
-	} else {
-		good = append(good, "The text contains more than 300 words.")
-	}
-
-	c = countParagraphsWithWords(body, 150)
-	if c >= 1 {
-		bad = append(bad, fmt.Sprintf("%d of the paragraphs contains more than the recommended maximum of 150 words.", c))
-	} else {
-		good = append(good, "None of the paragraphs contain more than 150 words.")
-	}
+	addResult(fmt.Sprintf("The text contains %d subheadings.", c), c > 0)
 
 	c = countHeadingsWithWords(body, 300)
-	if c > 1 {
-		bad = append(bad, fmt.Sprintf("%d of the subheadings is followed by more than 300 words.", c))
-	} else {
-		good = append(good, "The amount of words following each subheading doesn't exceed 300 words")
-	}
+	addResult(fmt.Sprintf("%d of the subheadings is followed by more than 300 words.", c), c <= 1)
+
+	c = countParagraphsWithWords(body, 150)
+	addResult(fmt.Sprintf("%d of the paragraphs contains more than 150 words.", c), c < 1)
 
 	// long sentences
 	sentences := countSentences(body.Text())
 	longSentences := countSentencesWithWords(body, 20)
 	percentage := float32(longSentences) / float32(sentences) * 100
-	if percentage > 25 {
-		bad = append(bad, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
-	} else {
-		good = append(good, fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage))
-	}
+	addResult(fmt.Sprintf("%.1f%% of of the sentences contain more than 20 words.", percentage), percentage <= 25)
 
 	// kincaid
 	kc := calculateKincaid(body.Text())
-	if kc < 60 {
-		bad = append(bad, fmt.Sprintf("The copy scores %1.f in the Flesch Reading Ease test.", kc))
-	} else {
-		good = append(good, fmt.Sprintf("The copy scores %1.f in the Flesch Reading Ease test.", kc))
-	}
+	addResult(fmt.Sprintf("The copy scores %1.f in the Flesch Reading Ease test.", kc), kc >= 60)
 
 	fmt.Printf("Analysing \u001B[4m%s\u001B[24m\n", loc)
-	for _, l := range good {
-		fmt.Printf("\u001B[32m+\u001B[39m %s\n", l)
-	}
-	for _, l := range bad {
-		fmt.Printf("\u001B[31m+\u001B[39m %s\n", l)
-	}
+	for _, r := range results {
+		if r.good {
+			fmt.Printf("\u001B[32m+\u001B[39m %s\n", r.text)
+		} else {
+			fmt.Printf("\u001B[31m-\u001B[39m %s\n", r.text)
+		}
 
+	}
+}
+
+func addResult(t string, g bool) {
+	results = append(results, result{text: t, good: g})
 }
