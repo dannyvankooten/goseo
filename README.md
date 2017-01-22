@@ -5,7 +5,7 @@ goseo
 
 goseo is a command line tool to assess readability and SEO score for any HTML document or web page.
 
-![Example of goseo](img/screenshot.png)
+![Example of goseo](data/screenshot.png)
 
 # Usage
 
