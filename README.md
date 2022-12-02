@@ -8,7 +8,7 @@ goseo is a command line tool to assess readability and SEO score for any HTML do
 ![Example of goseo](data/screenshot.png)
 
 
-# Usage
+### Usage
 
 Synopsis: `goseo [location] [selector]`
 
@@ -19,12 +19,12 @@ goseo https://dannyvankooten.com/2016-year-in-review/ .post-content
 ```
 
 
-# Downloading
+### Downloading
 
 You can [build from source](#building-from-source) or install one of the [prebuilt binaries from the GitHub releases page](https://github.com/dannyvankooten/goseo/releases).
 
 
-# Building from source
+### Building from source
 
 To build goseo from source, take the following steps.
 
@@ -33,6 +33,6 @@ To build goseo from source, take the following steps.
 3. Run `go build` from the repository's root directory.
 
 
-# License
+### License
 
 MIT licensed.
