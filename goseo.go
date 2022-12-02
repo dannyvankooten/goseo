@@ -20,6 +20,7 @@ type result struct {
 
 func main() {
 	var doc *goquery.Document
+	var err error
 
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: goseo [location] [selector]")
@@ -28,10 +29,22 @@ func main() {
 
 	loc := os.Args[1]
 	if strings.HasPrefix(loc, "http") {
-		doc, _ = goquery.NewDocument(loc)
+		doc, err = goquery.NewDocument(loc)
+		if err != nil {
+			fmt.Printf("error reading URL: %s\n", err)
+			os.Exit(1)
+		}
 	} else {
-		b, _ := ioutil.ReadFile(loc)
-		doc, _ = goquery.NewDocumentFromReader(bytes.NewReader(b))
+		b, err := ioutil.ReadFile(loc)
+		if err != nil {
+			fmt.Printf("error reading file: %s\n", err)
+			os.Exit(1)
+		}
+		doc, err = goquery.NewDocumentFromReader(bytes.NewReader(b))
+		if err != nil {
+			fmt.Printf("error parsing file as HTML: %s\n", err)
+			os.Exit(1)
+		}
 	}
 
 	// find article body
