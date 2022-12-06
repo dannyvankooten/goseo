@@ -1,3 +1,7 @@
+This repository moved to https://git.sr.ht/~dvko/goseo on 2022-12-06 :warning:
+
+--- 
+
 goseo
 ======
 [![Go Report Card](https://goreportcard.com/badge/github.com/dannyvankooten/goseo)](https://goreportcard.com/report/github.com/dannyvankooten/goseo)
